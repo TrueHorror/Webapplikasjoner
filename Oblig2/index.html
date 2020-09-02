@@ -3,32 +3,15 @@
     <head>
         <link rel="stylesheet" type="text/css" href="style.css" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="text/script" href="script.js">
         <!-- <link rel="stylesheet" type="text/css" href="normalize.css" /> -->
 
     </head>
-    <script>
-            function on() {
-              document.getElementById("overlay").style.display = "flex";
-              document.getElementById("formView").style.display = "block";
-            }
-            
-            function off() {
-              document.getElementById("overlay").style.display = "none";
-              document.getElementById("formView").style.display = "none";
-            }
-
-            function createCard() {
-                document.getElementById("titleNewTodo").value = '';
-                document.getElementById("descNewTodo").value = '';
-                document.getElementById("authNewTodo").value = '';
-                off();
-            }
-    </script>
         <body>
             <div id="overlay">
                 <section id="formView">
                     <h3>New Todo</h3>
-                    <i class="material-icons" onclick="off()">clear</i>
+                    <i class="material-icons" onclick="overlayOff()">clear</i>
                     <form autocomplete="off" id="newCardForm" action="javascript:void(0);">
                         <input autocomplete="false" name="hidden" type="text" style="display:none;">
                         
@@ -36,11 +19,10 @@
                         <input id="titleNewTodo" type="text" />
 
                         <div id="labelWrapper">
-                            <!--Add countdown for characters (Rami discord bilder)-->
                             <label for="descNewTodo">Description</label>
-                            <p>(<span id="charLeft">30</span> characters left)</p>
+                            <p>(<span id="charLeft">125</span> characters left)</p>
                         </div>
-                        <input id="descNewTodo" type="text" maxlength="30" />
+                        <input id="descNewTodo" type="text" maxlength="125" />
 
                         <label for="authNewTodo">Author</label>                        
                         <input id="authNewTodo" type="text" />
@@ -58,9 +40,9 @@
 
             <main>
                 <section id="todoCardSection">
-                    <button onclick="on()" id="addTodoBtn" type="button"><i class="material-icons">add</i>Todo</button>
-                    <div class="cardWrapper">
-                        <article class="todoCards">
+                    <button onclick="overlayOn()" id="addTodoBtn" type="button"><i class="material-icons">add</i>Todo</button>
+                    <div id="cardWrapper">
+                        <article id="firstCard" class="todoCards">
                             <h3 class="todoTitle">Todotitle</h3>
                             <p class="todoParagraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati, dolorum nam! Vel dicta, fugit accusamus consequuntur obcaecati rerum quaerat non, qui, est neque iste earum illo odio voluptatum aut eveniet?</p>
                             <div class="btnWrapper">
@@ -68,22 +50,7 @@
                                     <input type="button" class="cardCompleteBtn" value="Complete">
                             </div>
                         </article>
-                        <article class="todoCards">
-                            <h3 class="todoTitle">Todotitle</h3>
-                            <p class="todoParagraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. At laborum, rem maxime, nemo ullam earum tempore in autem unde esse expedita. Quidem accusantium ullam, minima accusamus repudiandae modi tempore totam.</p>
-                            <div class="btnWrapper">
-                                    <input type="button" class="cardDeleteBtn" value="Delete">
-                                    <input type="button" class="cardCompleteBtn" value="Complete">
-                            </div>
-                        </article>
-                        <article class="todoCards">
-                            <h3 class="todoTitle">Todotitle</h3>
-                            <p class="todoParagraph"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum officiis illo culpa aliquam, aspernatur consequuntur, et doloribus blanditiis illum fugiat consequatur voluptates sapiente deleniti? Corporis iure maxime quaerat repudiandae nam.</p>
-                            <div class="btnWrapper">
-                                    <input type="button" class="cardDeleteBtn" value="Delete">
-                                    <input type="button" class="cardCompleteBtn" value="Complete">
-                            </div>
-                        </article>
+
                     </div>
                 </section>
             
@@ -100,27 +67,7 @@
                             <th class="completedTableColumnName" id="columnDesc">Description</th>
                             <th class="completedTableColumnName" id="columnCompDate">Completed date</th>                    
                         </tr>
-                        <tr class="listItems">
-                            <td>Test Title</td>
-                            <td>Test Author</td>                  
-                            <td>lorem</td>                  
-                            <td>Test Date</td>                  
-
-                        </tr>
-                        <tr class="listItems">
-                            <td>Test Title</td>
-                            <td>Test Author</td>                  
-                            <td>Test Description</td>                  
-                            <td>Test Date</td>                  
-
-                        </tr>
-                        <tr class="listItems">
-                            <td>Test Title</td>
-                            <td>Test Author</td>                  
-                            <td>Test Description</td>                  
-                            <td>Test Date</td>                  
-
-                        </tr>
+                        
                     </table>
                 </summary>
 
@@ -130,4 +77,5 @@
         <footer>
 
         </footer>
+        <script src="script.js"></script>
 </html>
