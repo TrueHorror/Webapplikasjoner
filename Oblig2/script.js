@@ -1,7 +1,9 @@
 
 document.getElementById("descNewTodo").addEventListener("input", charLeft);
 
+
 let todoCards = [];
+let completedTodos = [];
 
 function overlayOn() {
     document.getElementById("overlay").style.display = "flex";
@@ -22,31 +24,29 @@ function overlayOn() {
 
       todoCards.push([title, author, description]);
 
-      updateCards(); 
-    
+      
 
-      let newCard = document.getElementsByClassName("todoCards");
+      console.log("i got here");
 
-      for (i = 0; i <= todoCards.length; i++) {
-          let card = todoCards[i];
-          for(j = 0; j <= cards.length; j++)
-          
-          newCard[0].children[0].textContent = title;
-          newCard[0].children[1].textContent = description;
-          ;
-      }
       
 
       
-      if(todoCards.length >= 3){
+      if(todoCards.length > 3){
         addToComplete(todoCards[0][0], todoCards[0][1], todoCards[0][2]);
         todoCards.splice(0,1);
+        
 
       }  
       overlayOff();
+      updateCards();
   }
 
   function addToComplete(title, author, description){
+      let date = new Date();
+      let formattedDate = appendLeadingZeroes(date.getDate()) + "." + appendLeadingZeroes(date.getMonth() + 1) + "." + date.getFullYear();
+    
+      completedTodos.push([title, author, description, formattedDate.toString()])
+
       let table = document.getElementById("completedTable");
       let row = table.insertRow(1);
       row.className = "listItems";
@@ -54,17 +54,62 @@ function overlayOn() {
       let descColumn = row.insertCell(1);
       let authorColumn = row.insertCell(2);
       let completedDate = row.insertCell(3);
+      
+      
+      completedTodos.forEach(function(todo) {
+        console.log(todo);
+        titleColumn.innerHTML = todo[0];
+        authorColumn.innerHTML = todo[1];
+        descColumn.innerHTML = todo[2];
+        completedDate.innerHTML = todo[3];
+      });
 
-      titleColumn.innerHTML = title;
-      authorColumn.innerHTML = author;
-      descColumn.innerHTML = description;
+      
 
-      let date = new Date();
-      formattedDate = appendLeadingZeroes(date.getDate()) + "." + appendLeadingZeroes(date.getMonth() + 1) + "." + date.getFullYear();
-      completedDate.innerHTML = formattedDate.toString();
-    
+      
       
   }
+
+  function completeFirstTodoCard(){
+    
+    addToComplete(todoCards[2][0], todoCards[2][1], todoCards[2][2]);
+    todoCards.splice(2, 1);
+    updateCards();
+
+  }
+
+  function deleteFirstTodoCard(){
+    todoCards.splice(2, 1);
+    updateCards();
+  }
+
+  function completeSecondTodoCard(){
+    
+    addToComplete(todoCards[1][0], todoCards[1][1], todoCards[1][2]);
+    todoCards.splice(1, 1);
+    updateCards();
+
+  }
+
+  function deleteSecondTodoCard(){
+    todoCards.splice(1, 1);
+    updateCards();
+  }
+
+  function completeThirdTodoCard(){
+    
+    addToComplete(todoCards[0][0], todoCards[0][1], todoCards[0][2]);
+    todoCards.splice(0, 1);
+    updateCards();
+
+  }
+
+  function deleteThirdTodoCard(){
+    todoCards.splice(0, 1);
+    updateCards();
+  }
+
+
 
   function charLeft() {
       let inputValue = document.getElementById("descNewTodo").value.length;
@@ -73,19 +118,39 @@ function overlayOn() {
   }
 
   function updateCards(){
-      let wrapper = document.getElementById("cardWrapper");
+    document.getElementById("firstCard").style.display = "none";
+    document.getElementById("secondCard").style.display = "none";
+    document.getElementById("thirdCard").style.display = "none";
 
-      //Fortsett 03.09.2020 ---- Finn ut hvordan jeg kan lage en blokk med HTML kode og fylle i variabler samt
-      //Lage flere ut av dem og legge dem som multiple children av div cardWrapper
-      for (let i = 0; i <= todoCards.length; i++) {
-        wrapper.appendChild(article);  
-        for (let j = 0; j < todoCards[i].length; j++) {
-              
-              
-          }
-          
-      }
+    if (todoCards.length >= 3) {
+      document.getElementById("firstTitle").innerHTML = todoCards[2][0];
+      document.getElementById("firstParagraph").innerHTML = todoCards[2][2];
+
+      document.getElementById("firstCard").style.display = "block";
+      
+    }
+
+    if (todoCards.length >= 2) {
+      document.getElementById("secondTitle").innerHTML = todoCards[1][0];
+      document.getElementById("secondParagraph").innerHTML = todoCards[1][2];
+
+      document.getElementById("secondCard").style.display = "block";
+      
+    }
+
+
+    document.getElementById("thirdTitle").innerHTML = todoCards[0][0];
+    document.getElementById("thirdParagraph").innerHTML = todoCards[0][2];
+
+    document.getElementById("thirdCard").style.display = "block";
+    
+
+    
+
+
+      
   }
+
 
   //Borrowed from https://codehandbook.org/javascript-date-format/
   function appendLeadingZeroes(n){
