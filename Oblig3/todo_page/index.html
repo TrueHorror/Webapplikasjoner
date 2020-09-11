@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="text/script" href="script.js" />
+    <!-- <link rel="stylesheet" type="text/css" href="normalize.css" /> -->
+  </head>
+  <body>
+    <div id="overlay">
+      <section id="formView">
+        <h3>New Todo</h3>
+        <i class="material-icons" onclick="overlayOff()">clear</i>
+        <form autocomplete="off" id="newCardForm" action="javascript:void(0);">
+          <input
+            autocomplete="false"
+            name="hidden"
+            type="text"
+            style="display: none"
+          />
+
+          <label for="titleNewTodo">Title</label>
+          <input id="titleNewTodo" type="text" />
+
+          <div id="labelWrapper">
+            <label for="descNewTodo">Description</label>
+            <p>(<span id="charLeft">125</span> characters left)</p>
+          </div>
+          <input id="descNewTodo" type="text" maxlength="125" />
+
+          <label for="authNewTodo">Author</label>
+          <input id="authNewTodo" type="text" />
+
+          <input
+            onclick="createCard()"
+            id="createBtn"
+            type="submit"
+            value="Create"
+          />
+        </form>
+      </section>
+    </div>
+
+    <header>
+      <h1>HIOF</h1>
+      <h2 id="userName">User user</h2>
+    </header>
+
+    <main>
+      <section id="todoCardSection">
+        <button onclick="overlayOn()" id="addTodoBtn" type="button">
+          <i class="material-icons">add</i>Todo
+        </button>
+        <div class="cardWrapper">
+          <article id="firstCard" class="todoCards">
+            <h3 id="firstTitle" class="todoTitle">Todotitle</h3>
+            <p id="firstParagraph" class="todoParagraph">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Obcaecati, dolorum nam! Vel dicta, fugit accusamus consequuntur
+              obcaecati rerum quaerat non, qui, est neque iste earum illo odio
+              voluptatum aut eveniet?
+            </p>
+            <div class="btnWrapper">
+              <input
+                onclick="deleteFirstTodoCard()"
+                type="button"
+                id="firstDel"
+                class="cardDeleteBtn"
+                value="Delete"
+              />
+              <input
+                onclick="completeFirstTodoCard()"
+                type="button"
+                id="firstCom"
+                class="cardCompleteBtn"
+                value="Complete"
+              />
+            </div>
+          </article>
+          <article id="secondCard" class="todoCards">
+            <h3 id="secondTitle" class="todoTitle">Todotitle</h3>
+            <p id="secondParagraph" class="todoParagraph">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Obcaecati, dolorum nam! Vel dicta, fugit accusamus consequuntur
+              obcaecati rerum quaerat non, qui, est neque iste earum illo odio
+              voluptatum aut eveniet?
+            </p>
+            <div class="btnWrapper">
+              <input
+                onclick="deleteSecondTodoCard()"
+                type="button"
+                id="secondDel"
+                class="cardDeleteBtn"
+                value="Delete"
+              />
+              <input
+                onclick="completeSecondTodoCard()"
+                type="button"
+                id="secondCom"
+                class="cardCompleteBtn"
+                value="Complete"
+              />
+            </div>
+          </article>
+          <article id="thirdCard" class="todoCards">
+            <h3 id="thirdTitle" class="todoTitle">Todotitle</h3>
+            <p id="thirdParagraph" class="todoParagraph">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Obcaecati, dolorum nam! Vel dicta, fugit accusamus consequuntur
+              obcaecati rerum quaerat non, qui, est neque iste earum illo odio
+              voluptatum aut eveniet?
+            </p>
+            <div class="btnWrapper">
+              <input
+                onclick="deleteThirdTodoCard()"
+                type="button"
+                id="thirdDel"
+                class="cardDeleteBtn"
+                value="Delete"
+              />
+              <input
+                onclick="completeThirdTodoCard()"
+                type="button"
+                id="thirdCom"
+                class="cardCompleteBtn"
+                value="Complete"
+              />
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <summary id="summarySection">
+        <h2>Completed todos</h2>
+        <div id="filterCheckboxWrapper">
+          <input type="checkbox" id="dateFilterCheckbox" />
+          <label for="dateFilterCheckbox"
+            >Filter by date(Not implemented)</label
+          >
+        </div>
+        <table id="completedTable">
+          <tr id="titles">
+            <th class="completedTableColumnName" id="columnTitle">Title</th>
+            <th class="completedTableColumnName" id="columnAuthor">Author</th>
+            <th class="completedTableColumnName" id="columnDesc">
+              Description
+            </th>
+            <th class="completedTableColumnName" id="columnCompDate">
+              Completed date
+            </th>
+          </tr>
+        </table>
+      </summary>
+    </main>
+    <footer></footer>
+  </body>
+  <script src="./src/script.js"></script>
+</html>
