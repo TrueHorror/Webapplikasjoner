@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import CompletedList from './src/components/CompletedList';
 import Modal from './src/components/Modal';
 import Navbar from './src/components/Navbar';
-import Search from './src/components/Search';
 import TodoButton from './src/components/TodoButton';
 import TodoCardList from './src/components/TodoCardList';
 
@@ -27,13 +26,14 @@ function App() {
 
   const handleOverlay = () => {
     setOverlay((so) => !so);
+    setFormData({}); // funker sånn meh... gjør om inputfeltene til uncontrolled så hakke peiling ka eg skal gjøre
+    setCharsLeft(50);
   };
 
   const handleCreateCard = () => {
     setTodos((prev) => [{ id: count, ...formData }, ...prev]);
     idCount();
     handleOverlay();
-    console.log('cardAdded');
   };
 
   const removeTodo = (id) => {

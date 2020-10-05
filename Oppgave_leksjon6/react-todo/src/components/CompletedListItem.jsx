@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CompletedListItem({ setCompleted, completed, search }) {
+function CompletedListItem({ completed, search }) {
   // Borrowed from https://codehandbook.org/javascript-date-format/
   function appendLeadingZeroes(n) {
     if (n <= 9) {

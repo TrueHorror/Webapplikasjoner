@@ -8,13 +8,9 @@ function Modal({
   setCharsLeft,
   charsLeft,
 }) {
-  const [emptyState, setEmptyState] = React.useState('');
-
   const handleSubmit = (e) => {
     e.preventDefault();
     handleCreateCard();
-    setFormData({}); // funker sånn meh... gjør om inputfeltene til uncontrolled så hakke peiling ka eg skal gjøre
-    setCharsLeft(50);
   };
   const updateCharsLeft = (e) => {
     const maxChars = 50;

@@ -6,11 +6,6 @@ import Search from './Search';
 function CompletedList({ completed, setCompleted }) {
   const [search, setSearch] = useState('');
 
-  // const updateCompleted = (e) => {
-  //   setCompleted(completed.filter((todo) => todo.title.includes(search)));
-  //   console.log(e.target.value);
-  // };
-
   return (
     <summary id="summarySection">
       <h2>Completed todos</h2>
