@@ -12,3 +12,7 @@ export const listPolls = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json(polls);
 });
 
+export const get = catchAsyncErrors(async (req, res, next) => {
+  const user = await userService.getUser(req.param);
+  res.status(200).json(user);
+});

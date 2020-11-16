@@ -5,7 +5,6 @@ const { Schema } = mongoose;
 const AnswerSchema = new Schema({
   answerText: {
     type: String,
-    required: true,
     minlength: ['1', 'Must have at least one character in answer'],
     maxlength: ['100', 'Cannot have more than 100 characters in answer'],
   },

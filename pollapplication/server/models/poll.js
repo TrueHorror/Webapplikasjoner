@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
 import slugify from 'slugify';
-import User from './user.js';
-import Answer from './answer.js';
 
 const { Schema } = mongoose;
 
@@ -22,7 +20,8 @@ const pollSchema = new Schema(
         default: 'No Answer',
       },
     ],
-    creator: {
+
+    user: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: true,

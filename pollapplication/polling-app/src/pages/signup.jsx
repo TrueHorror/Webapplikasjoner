@@ -1,56 +1,108 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {
+  ErrorText,
+  StyledForm,
+  StyledInput,
+  StyledDiv,
+  StyledButton,
+  HeaderText,
+} from '../styles/Styled';
+import { create } from '../utils/userService.js';
 
 const SignUp = () => {
-  <>
-    <div className="formCenter">
-      <form className="formFields" onSubmit={this.handleSubmit}>
-        <div className="formField">
-          <label htmlFor="name" className="formField__Label">
-            Full Name
-          </label>
-          <input
-            type="text"
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  const [passwordRep, setPasswordRep] = useState('');
+  const [invalidPass, setInvalidPass] = useState(false);
+
+  const updateValue = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const createUser = (e) => {
+    e.preventDefault();
+
+    if (!user) {
+      console.log('you done goofed');
+    } else if (user.password === passwordRep) {
+      setInvalidPass(false);
+      create(user);
+    } else {
+      setInvalidPass(true);
+    }
+  };
+
+  const passwordRepeat = (e) => {
+    setPasswordRep(e.target.value);
+  };
+
+  return (
+    <>
+      <HeaderText as="h1">Sign Up</HeaderText>
+      <StyledForm>
+        <StyledDiv>
+          <StyledInput
+            value={user.name}
             id="name"
-            className="formField__Input"
             placeholder="Full Name..."
             name="name"
+            onChange={updateValue}
           />
-        </div>
-        <div className="formField">
-          <label htmlFor="email" className="formField__Label">
-            Email
-          </label>
-          <input
-            type="text"
+
+          <StyledInput
+            value={user.email}
             id="email"
-            className="formField__Input"
             placeholder="Email..."
             name="email"
+            onChange={updateValue}
           />
-        </div>
-        <div className="formField">
-          <label htmlFor="password" className="formField__Label">
-            Password
-          </label>
-          <input
-            type="text"
+
+          <StyledInput
+            value={user.password}
             id="password"
-            className="formField__Input"
             placeholder="Password..."
             name="password"
+            onChange={updateValue}
           />
-        </div>
-        <div>
-          <button type="button" className="formField__Button mr-20">
-            Sign In
-          </button>
-          <a href="#" className="formField__Link">
-            I already have a user
-          </a>
-        </div>
-      </form>
-    </div>
-  </>;
+
+          {invalidPass ? (
+            <>
+              <ErrorText>Passwords needs to be equal!</ErrorText>
+              <StyledInput
+                isInvalid
+                id="passwordRep"
+                placeholder="Repeat Password..."
+                name="passwordRep"
+                value={passwordRep}
+                onChange={passwordRepeat}
+              />
+            </>
+          ) : (
+            <StyledInput
+              id="passwordRep"
+              placeholder="Repeat Password..."
+              name="passwordRep"
+              value={passwordRep}
+              onChange={passwordRepeat}
+            />
+          )}
+        </StyledDiv>
+        <StyledDiv>
+          <StyledButton primary onClick={createUser}>
+            Create User
+          </StyledButton>
+
+          <StyledButton primary as="a" href="/signin">
+            I already have a user.
+          </StyledButton>
+        </StyledDiv>
+      </StyledForm>
+    </>
+  );
 };
 
 export default SignUp;

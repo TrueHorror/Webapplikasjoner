@@ -21,4 +21,7 @@ export default {
     '5x1': '3rem',
     '6x1': '4rem',
   },
+  textColors: {
+    warning: 'red 500',
+  },
 };

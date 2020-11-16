@@ -35,7 +35,7 @@ UserSchema.pre('save', async function (next) {
 UserSchema.virtual('polls', {
   ref: 'Poll',
   localField: '_id',
-  foreignField: 'creator',
+  foreignField: 'user',
   justOne: false,
 });
 

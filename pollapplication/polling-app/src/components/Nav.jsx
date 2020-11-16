@@ -12,11 +12,13 @@ const NavMenu = styled.ul`
   padding: 0;
   list-style: none;
   padding: 0 20px;
-  align-items: center;
 `;
 
 const NavMenuItem = styled.li`
   padding: 0 20px;
+  display: block;
+  float: left;
+  justify-content: space-between;
 
   &:first-child {
     padding-left: 0;
@@ -24,11 +26,10 @@ const NavMenuItem = styled.li`
 
   & > a {
     color: #333;
-    display: block;
     font-size: 14px;
     font-weight: 700;
     line-height: 3.456;
-    padding: 5px 0;
+    padding: 5px 10px;
     text-decoration: none;
 
     &.active {
@@ -43,7 +44,19 @@ const Nav = () => (
     <NavMenu>
       <NavMenuItem>
         <NavLink exact to="/" activeClassName="active">
-          Polls
+          Home Page
+        </NavLink>
+        <NavLink to="/polls" activeClassName="active">
+          View all polls
+        </NavLink>
+        <NavLink to="/createpoll" activeClassName="active">
+          Create Poll
+        </NavLink>
+        <NavLink to="/signin" activeClassName="active">
+          Sign In
+        </NavLink>
+        <NavLink to="/signup" activeClassName="active">
+          Sign Up
         </NavLink>
       </NavMenuItem>
     </NavMenu>

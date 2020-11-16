@@ -1,46 +1,57 @@
 import React, { useState, useEffect } from 'react';
 
-const SignIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [user, setUser] = useState(null);
+import {
+  StyledButton,
+  StyledForm,
+  StyledInput,
+  StyledDiv,
+  HeaderText,
+} from '../styles/Styled';
 
-  if (user) {
-    return <div>{user.name}</div>;
-  }
-  <>
-    <div className="formCenter">
-      <form className="formFields" onSubmit={this.handleSubmit}>
-        <div className="formField">
-          <label htmlFor="email" className="formField__Label">
-            Email
-          </label>
-          <input
-            type="text"
+const SignIn = () => {
+  const [loginUser, setLoginUser] = useState({
+    email: '',
+    password: '',
+  });
+
+  const updateValue = (e) => {
+    setLoginUser({ ...loginUser, [e.target.name]: e.target.value });
+  };
+
+  const logIn = () => {};
+
+  return (
+    <>
+      <HeaderText as="h1">Log In</HeaderText>
+      <StyledForm>
+        <StyledDiv>
+          <StyledInput
             id="email"
-            className="formField__Input"
             placeholder="Email..."
             name="email"
-            value={email}
-            onChange={({ target }) => setEmail(target.value)}
+            value={loginUser.email}
+            onChange={updateValue}
           />
-        </div>
-        <div className="formField">
-          <label htmlFor="password" className="formField__Label">
-            Password
-          </label>
-          <input
-            type="text"
+
+          <StyledInput
             id="password"
-            className="formField__Input"
             placeholder="Password..."
             name="password"
+            size="lg"
+            value={loginUser.password}
+            onChange={updateValue}
           />
-        </div>
-        <div className="formField">
-          <button className="formField__Button mr-20">Log In</button>
-        </div>
-      </form>
-    </div>
-  </>;
+        </StyledDiv>
+        <StyledDiv>
+          <StyledButton primary>Log In</StyledButton>
+
+          <StyledButton primary as="a" href="/signup">
+            I don't have a user
+          </StyledButton>
+        </StyledDiv>
+      </StyledForm>
+    </>
+  );
 };
+
+export default SignIn;
