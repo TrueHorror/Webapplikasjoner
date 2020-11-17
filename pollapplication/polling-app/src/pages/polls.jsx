@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from 'react';
+import { TimeIcon } from '@chakra-ui/icons';
+import { Link } from 'react-router-dom';
 import {
-  Box,
-  Heading,
-  Flex,
-  Text,
-  Icon,
-  Button,
-  Textarea,
-} from '@chakra-ui/core';
+  StyledDiv,
+  HeaderText,
+  SmallHeader,
+  FrontPageCards,
+  TextDiv,
+  AllPollsCard,
+  StyledButton,
+  StyledLink,
+} from '../styles/Styled';
 
 import { list } from '../utils/pollService.js';
 
-const Polls = () => {
+const Polls = (props) => {
   const [polls, setPolls] = useState(null);
   const [error, setError] = useState(null);
-  const [count, setCount] = useState(0);
 
-  const takePoll = (e) => {
-    console.log(e.target);
-  };
+  const [pollId, setPollId] = useState('');
+
+  // const takePoll = (e) => {
+  //   e.preventDefault();
+  //   props.history.push(`/takePoll/${e.target.id}`);
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
       const { data, error } = await list();
-      console.log(data, error);
+
       if (error) {
         setError(error);
       } else {
@@ -33,43 +38,29 @@ const Polls = () => {
     fetchData();
   }, []);
 
-  const idCounter = () => {
-    setCount((c) => c + 1);
-  };
-
   return (
     <section>
-      <Heading mb={2} as="h1" size="md">
-        All Polls
-      </Heading>
+      <HeaderText as="h1">All Polls</HeaderText>
       {error && <p>{error}</p>}
-      <Flex>
+      <FrontPageCards>
         {polls &&
           polls.map((poll) => (
-            <Box p="6" key={poll.id} onClick={takePoll}>
-              <Box
-                p="6"
-                mt="1"
-                fontWeight="semibold"
-                lineHeight="tight"
-                isTruncated
-                borderWidth="1px"
-                borderRadius="lg"
-              >
-                <Heading mb={2} size="sm">
-                  {poll.question}
-                </Heading>
-                <Text fontSize="lg" mb={2}>
-                  By: {poll.user.name}
-                </Text>
-                <Text fontSize="md" mb={2}>
-                  <Icon name="time" mr={2} />
+            <AllPollsCard>
+              <StyledDiv>
+                <SmallHeader as="h2">{poll.question}</SmallHeader>
+                <TextDiv>By: {poll.user.name}</TextDiv>
+                <TextDiv>
+                  <TimeIcon name="time" />
                   {new Date(poll.createdAt).toDateString()}
-                </Text>
-              </Box>
-            </Box>
+                </TextDiv>
+
+                <StyledLink primary to={{ pathname: `/poll/${poll.id}` }}>
+                  Take poll
+                </StyledLink>
+              </StyledDiv>
+            </AllPollsCard>
           ))}
-      </Flex>
+      </FrontPageCards>
     </section>
   );
 };

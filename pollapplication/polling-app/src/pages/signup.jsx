@@ -9,7 +9,7 @@ import {
 } from '../styles/Styled';
 import { create } from '../utils/userService.js';
 
-const SignUp = () => {
+const SignUp = (props) => {
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -31,6 +31,7 @@ const SignUp = () => {
     } else if (user.password === passwordRep) {
       setInvalidPass(false);
       create(user);
+      props.history.push('/');
     } else {
       setInvalidPass(true);
     }

@@ -7,6 +7,7 @@ import FrontPage from '../pages/frontPage';
 import SignIn from '../pages/signIn';
 import SignUp from '../pages/signup';
 import CreatePoll from '../pages/createpoll';
+import TakePoll from '../pages/takePoll';
 
 const Routes = () => (
   <Router>
@@ -15,17 +16,20 @@ const Routes = () => (
         <Route exact path="/">
           <FrontPage />
         </Route>
-        <Route path="/polls">
-          <Polls />
-        </Route>
-        <Route path="/signin">
+        <Route exact path="/polls" render={(props) => <Polls {...props} />} />
+        <Route exact path="/signin">
           <SignIn />
         </Route>
-        <Route path="/signup">
-          <SignUp />
-        </Route>
-        <Route path="/createpoll">
-          <CreatePoll />
+        <Route exact path="/signup" render={(props) => <SignUp {...props} />} />
+
+        <Route
+          exact
+          path="/createpoll"
+          render={(props) => <CreatePoll {...props} />}
+        />
+
+        <Route exact path="/poll/:id">
+          <TakePoll />
         </Route>
       </Switch>
     </MainLayout>

@@ -37,7 +37,7 @@ const FrontPage = () => {
       setIsEmpty(false);
       console.log(e.target.id); // poll id lolxd
       setPollId(e.target.id);
-      update(pollId, create(answer));
+      update(pollId, create(answer)); // Does not work
     }
   };
 

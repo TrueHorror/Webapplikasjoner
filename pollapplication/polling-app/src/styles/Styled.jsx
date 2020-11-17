@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const StyledForm = styled.form`
   margin: 0 auto;
@@ -9,6 +10,12 @@ export const StyledForm = styled.form`
   justify-content: center;
   box-shadow: 0px 1px 8px #00000029;
   border-radius: 8px;
+`;
+
+export const AllPollsCard = styled(StyledForm)`
+  &:hover {
+    box-shadow: 0px 2px 30px #00000029;
+  }
 `;
 
 export const FrontPageCards = styled.div`
@@ -90,6 +97,7 @@ export const TextDiv = styled(StyledDiv)`
   flex-direction: row;
   font-size: ${(props) => props.theme.fontSizes.xxxl};
   margin-left: 50px;
+  margin-bottom: 10px;
 `;
 
 export const HeaderText = styled.header`
@@ -104,4 +112,21 @@ export const SmallHeader = styled(HeaderText)`
 
 export const QuestionText = styled(HeaderText)`
   font-size: ${(props) => props.theme.fontSizes.xxxl};
+`;
+
+export const StyledLink = styled(Link)`
+  color: darkgreen;
+  font-size: 2em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid darkgreen;
+  border-radius: 3px;
+  background: white;
+  &:hover {
+    background: ${(props) => (props.primary ? 'darkgreen' : 'white')};
+    color: ${(props) => (props.primary ? 'white' : 'darkgreen')};
+    cursor: pointer;
+  }
+  text-decoration: none;
+  margin: 10px auto;
 `;

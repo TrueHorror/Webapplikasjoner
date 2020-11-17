@@ -10,11 +10,11 @@ import {
 } from '../styles/Styled';
 
 const CreatePoll = () => {
-  const userId = '5faf1d9a7812854a4cf22d79'; // Fikk ikke hentet ut user id
   const [pollData, setPollData] = useState(null);
 
   const updatePollData = (e) => {
     setPollData({ question: e.target.value, user: '5faf1d9a7812854a4cf22d79' });
+    // Fikk ikke hentet ut user id
   };
 
   const savePoll = (e) => {
