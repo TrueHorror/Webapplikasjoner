@@ -13,7 +13,7 @@ const CreatePoll = () => {
   const [pollData, setPollData] = useState(null);
 
   const updatePollData = (e) => {
-    setPollData({ question: e.target.value, user: '5faf1d9a7812854a4cf22d79' });
+    setPollData({ question: e.target.value, user: '5faf1d9a7812854a4cf22d79' }); // hardkodet ID, får ikke til å ha user state eller lignende.
     // Fikk ikke hentet ut user id
   };
 
